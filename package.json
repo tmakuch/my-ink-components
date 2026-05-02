@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "start": "tsx index.jsx"
+    "start": "cross-env NODE_ENV=debug tsx index.jsx",
+    "build": "node build.mjs"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +13,13 @@
   "type": "module",
   "dependencies": {
     "ink": "^5.1.0",
-    "react": "^18.3.1"
+    "react": "^18.3.1",
+    "react-router": "^7.14.2"
   },
   "devDependencies": {
+    "cross-env": "10.1.0",
+    "esbuild": "^0.25.0",
+    "postject": "^1.0.0-alpha.6",
     "tsx": "^4.19.3"
   }
 }
