@@ -1,28 +1,18 @@
-import React from 'react';
+import React from "react";
 import { Box, Text } from "ink";
 
 export function RightPanel() {
   return (
-    <Box
-      flexGrow={3}
-      borderStyle="single"
-      flexDirection="column"
-      paddingX={1}
-    >
-      <Text bold>Right Panel Home</Text>
+    <Box flexGrow={3} borderStyle="single" flexDirection="column" paddingX={1}>
+      <Text bold>Right Panel Page 1</Text>
     </Box>
   );
 }
 
 export function RightPanel2() {
   return (
-    <Box
-      flexGrow={3}
-      borderStyle="single"
-      flexDirection="column"
-      paddingX={1}
-    >
-      <Text bold>Right Panel About</Text>
+    <Box flexGrow={3} borderStyle="single" flexDirection="column" paddingX={1}>
+      <Text bold>Right Panel Page 2</Text>
     </Box>
   );
 }
