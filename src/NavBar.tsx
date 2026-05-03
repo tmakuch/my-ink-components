@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Text } from "ink";
+import { Box, Text, useApp } from "ink";
 import { useNavigate } from "react-router";
 import Button from "./Button";
 
@@ -13,6 +13,7 @@ interface NavBarProps {
 
 export default function NavBar({ title, navButtons }: NavBarProps) {
   const navigate = useNavigate();
+  const app = useApp();
 
   return (
     <Box
@@ -35,7 +36,7 @@ export default function NavBar({ title, navButtons }: NavBarProps) {
           ))}
         </Box>
       </Box>
-      <Button label="X" onClick={() => process.exit(0)} />
+      <Button label="X" onClick={() => app.exit()} />
     </Box>
   );
 }
