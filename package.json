@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.jsx",
   "scripts": {
-    "start": "cross-env NODE_ENV=debug tsx index.jsx",
+    "start": "cross-env DEV=true tsx --inspect index.jsx",
     "build": "node build.mjs"
   },
   "keywords": [],
@@ -22,6 +22,7 @@
     "cross-env": "^10.1.0",
     "esbuild": "^0.25.0",
     "postject": "^1.0.0-alpha.6",
+    "react-devtools-core": "^7.0.1",
     "tsx": "^4.19.3"
   }
 }

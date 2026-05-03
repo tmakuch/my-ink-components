@@ -3,7 +3,7 @@ import { Box, Text } from "ink";
 import Button from "./Button";
 import { useNavigate } from "react-router";
 
-export default function NavBar() {
+export default function NavBar({ title }: { title: string }) {
   const navigate = useNavigate();
 
   return (
@@ -17,7 +17,7 @@ export default function NavBar() {
       paddingRight={1}
     >
       <Box flexGrow={1} flexDirection="column" paddingX={1}>
-        <Text>Terminal App</Text>
+        <Text>{title}</Text>
         <Box flexDirection="row">
           <Button label="Page 1" onClick={() => navigate("/")} />
           <Button label="Page 2" onClick={() => navigate("/page2")} />

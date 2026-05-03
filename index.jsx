@@ -13,7 +13,7 @@ const CURSOR_SHOW = "\x1b[?25h";
 process.stdout.write(ALT_SCREEN_ENTER);
 process.stdout.write(CURSOR_HIDE);
 
-if (process.env.NODE_ENV !== "debug") {
+if (process.env.DEV?.toLowerCase() === "true") {
   process.on("exit", () => {
     process.stdout.write(CURSOR_SHOW);
     process.stdout.write(ALT_SCREEN_EXIT);

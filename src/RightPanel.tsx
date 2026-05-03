@@ -1,7 +1,7 @@
-import React, { useRef, useState, useEffect } from "react";
-import { Box, Text, useBoxMetrics } from "ink";
+import React, { useRef, useEffect } from "react";
+import { Box, Text, useStderr } from "ink";
 import { ScrollView, ScrollViewRef } from "ink-scroll-view";
-import { useMouse, useOnMouseHover } from "@zenobius/ink-mouse";
+import { useMouse } from "@zenobius/ink-mouse";
 
 export function RightPanel() {
   return (
@@ -14,7 +14,12 @@ export function RightPanel() {
 export function RightPanel2() {
   const scrollRef = useRef<ScrollViewRef>(null);
   const mouse = useMouse();
-  mouse.events.on("scroll", (position, action) => {
+  const { stdout } = useStderr();
+
+  function handleScroll(
+    position: ReturnType<typeof useMouse>["position"],
+    action: ReturnType<typeof useMouse>["scroll"],
+  ) {
     switch (action) {
       case "scrolldown":
         scrollRef.current?.scrollBy(1);
@@ -23,13 +28,28 @@ export function RightPanel2() {
         scrollRef.current?.scrollBy(-1);
         break;
     }
-  });
+  }
+
+  useEffect(() => {
+    const handleResize = () => scrollRef.current?.remeasure();
+    stdout?.on("resize", handleResize);
+    mouse.events.on("scroll", handleScroll);
+    return () => {
+      stdout?.off("resize", handleResize);
+      mouse.events.off("scroll", handleScroll);
+    };
+  }, [stdout]);
+
   return (
-    <Box flexGrow={1} borderStyle="single" flexDirection="column" paddingX={1}>
-      <ScrollView ref={scrollRef} borderRight={true}>
-        <Text bold>{getLoremIpsum()}</Text>
-      </ScrollView>
-    </Box>
+    <ScrollView
+      ref={scrollRef}
+      flexGrow={1}
+      borderStyle="single"
+      flexDirection="column"
+      paddingX={1}
+    >
+      <Text bold>{getLoremIpsum()}</Text>
+    </ScrollView>
   );
 }
 
