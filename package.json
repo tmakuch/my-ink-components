@@ -9,7 +9,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "type": "module",
   "dependencies": {
     "@zenobius/ink-mouse": "^1.0.3",
@@ -23,6 +23,7 @@
     "esbuild": "^0.25.0",
     "postject": "^1.0.0-alpha.6",
     "react-devtools-core": "^7.0.1",
-    "tsx": "^4.19.3"
+    "tsx": "^4.19.3",
+    "prettier": "^3.8.3"
   }
 }
