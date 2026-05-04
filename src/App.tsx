@@ -1,7 +1,7 @@
 import React from "react";
 import { Box, useApp, useInput, useWindowSize } from "ink";
 import { Routes, Route } from "react-router";
-import NavBar from "./NavBar";
+import NavBar from "./components/NavBar";
 import { LeftPanel, RightPanel, RightPanel2 } from "./mockElements";
 
 export default function App() {

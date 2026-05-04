@@ -1,6 +1,7 @@
 import React from "react";
 import { Box, Text } from "ink";
-import { ScrollableBox } from "./ScrollableBox";
+import ScrollableBox from "./components/ScrollableBox";
+import TextInput from "./components/TextInput";
 
 export function LeftPanel() {
   return (
@@ -19,8 +20,26 @@ export function LeftPanel() {
 
 export function RightPanel() {
   return (
-    <Box flexGrow={1} borderStyle="single" flexDirection="column" paddingX={1}>
-      <Text bold>Right Panel Page 1</Text>
+    <Box
+      flexGrow={1}
+      borderStyle="single"
+      flexDirection="column"
+      paddingX={1}
+      backgroundColor="grey"
+    >
+      <Box width="100%" backgroundColor="red">
+        <TextInput label="First Name" />
+      </Box>
+      <Text>Spacer</Text>
+      <Text>Spacer</Text>
+      <Text>Spacer</Text>
+      <Text>Spacer</Text>
+      <Text>Spacer</Text>
+      <Text>Spacer</Text>
+      <Text>Spacer</Text>
+      <Box width="100%" backgroundColor="red">
+        <TextInput label="Last Name" />
+      </Box>
     </Box>
   );
 }

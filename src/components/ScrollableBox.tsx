@@ -8,7 +8,7 @@ type NavBarProps = {
   children: Array<React.ReactNode>;
 } & (typeof Box)["propTypes"];
 
-export function ScrollableBox({ children, ...props }: NavBarProps) {
+export default function ScrollableBox({ children, ...props }: NavBarProps) {
   const ref = useRef<ScrollViewRef>(null);
   const containerRef = useRef<DOMElement>(null);
   const mouse = useMouse();
