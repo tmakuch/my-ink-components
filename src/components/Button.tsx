@@ -1,5 +1,5 @@
-import React, { useMemo, useRef, useState } from "react";
-import { Box, Text } from "ink";
+import React, { useEffect, useMemo, useRef, useState } from "react";
+import { Box, Text, useFocus, useInput } from "ink";
 import { useOnMouseHover, useOnMouseClick } from "@zenobius/ink-mouse";
 
 type ButtonProps = {
@@ -9,6 +9,7 @@ type ButtonProps = {
 
 export default function Button({ label, onClick, ...props }: ButtonProps) {
   const ref = useRef(null);
+  const { isFocused } = useFocus();
 
   const [hovering, setHovering] = useState(false);
   const [clicking, setClicking] = useState(false);
@@ -20,18 +21,29 @@ export default function Button({ label, onClick, ...props }: ButtonProps) {
     }
   });
   useOnMouseHover(ref, setHovering);
+  useEffect(() => {
+    setHovering(isFocused);
+  }, [isFocused]);
+  useInput(
+    (character, key) => {
+      if ((key.return || character === " ") && typeof onClick === "function") {
+        onClick();
+      }
+    },
+    { isActive: isFocused },
+  );
 
   const border = useMemo(() => {
     if (clicking) {
       return "double";
     }
 
-    if (hovering) {
+    if (hovering || isFocused) {
       return "singleDouble";
     }
 
     return "single";
-  }, [clicking, hovering]);
+  }, [clicking, hovering, isFocused]);
 
   return (
     <Box
