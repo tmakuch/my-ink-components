@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Box, Text } from "ink";
 import ScrollableBox from "./components/ScrollableBox";
 import TextInput from "./components/TextInput";
@@ -19,27 +19,37 @@ export function LeftPanel() {
 }
 
 export function RightPanel() {
+  const [firstName, setFirstName] = useState<string>("");
+  const [lastName, setLastName] = useState<string>("");
+  const [wasSubmitted, setWasSubmitted] = useState<boolean>(false);
+
   return (
-    <Box
-      flexGrow={1}
-      borderStyle="single"
-      flexDirection="column"
-      paddingX={1}
-      backgroundColor="grey"
-    >
-      <Box width="100%" backgroundColor="red">
-        <TextInput label="First Name" />
+    <Box flexGrow={1} borderStyle="single" flexDirection="column" paddingX={1}>
+      <Box width="100%">
+        <TextInput
+          label="First Name"
+          value={firstName}
+          onChange={(v, s) => {
+            setFirstName(v);
+            s && setWasSubmitted(true);
+          }}
+          width={30}
+        />
       </Box>
-      <Text>Spacer</Text>
-      <Text>Spacer</Text>
-      <Text>Spacer</Text>
-      <Text>Spacer</Text>
-      <Text>Spacer</Text>
-      <Text>Spacer</Text>
-      <Text>Spacer</Text>
-      <Box width="100%" backgroundColor="red">
-        <TextInput label="Last Name" />
+      <Box width="100%">
+        <TextInput
+          label="Last Name"
+          value={lastName}
+          onChange={(v, s) => {
+            setLastName(v);
+            s && setWasSubmitted(true);
+          }}
+          width={30}
+        />
       </Box>
+      <Text>First Name: {firstName}</Text>
+      <Text>Last Name: {lastName}</Text>
+      <Text>Was any input submitted: {wasSubmitted ? "yes" : "no"}</Text>
     </Box>
   );
 }
